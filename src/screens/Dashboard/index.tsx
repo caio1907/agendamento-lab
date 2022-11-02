@@ -97,7 +97,7 @@ const Dashboard:React.FC = () => {
         unsubscribeLabs();
       };
     }
-  }, [user?.uid])
+  }, [user])
 
   const handleOpenModal = () => {
     setOpenModal(true);
