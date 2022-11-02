@@ -97,46 +97,6 @@ const Login:React.FC = () => {
               Entrar
             </Button>
           </Box>
-          {/* <Typography component='h1' variant='h5' color='primary'>
-            Entrar
-          </Typography>
-          <Grid item>
-            <Box
-              component='form'
-              onSubmit={signIn}
-              noValidate
-              autoComplete='off'
-            >
-              <TextField
-                error={Boolean(data.email && !validateEmail(data.email))}
-                type='email'
-                required
-                label='E-mail'
-                autoFocus
-                autoComplete='username'
-                value={data.email}
-                onChange={evt => setData(prev => ({...prev, email: evt.target.value}))}
-              />
-              <TextField
-                error={Boolean(data.password && data.password.length <= 5)}
-                type='password'
-                required
-                label='Senha'
-                autoComplete='current-password'
-                value={data.password}
-                onChange={evt => setData(prev => ({...prev, password: evt.target.value}))}
-              />
-              <Button
-                type='submit'
-                sx={{
-                  margin: theme.spacing(3, 0, 2)
-                }}
-                disabled={!validateEmail(data.email) || data.password.length <= 5}
-              >
-                Entrar
-              </Button>
-            </Box>
-          </Grid> */}
         </form>
       </Container>
     </Box>

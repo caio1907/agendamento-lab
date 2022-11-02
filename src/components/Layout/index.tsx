@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 interface Props {
   children: React.ReactNode,
@@ -28,9 +28,11 @@ const Dashboard:React.FC<Props> = ({
   return (
     <>
       <Root>
-        <Box>
-          {children}
-        </Box>
+        <Container>
+          <Box sx={{ pt: 2 }}>
+            {children}
+          </Box>
+        </Container>
       </Root>
       <Navbar {...{logOut}} sidebarOnOpen={handleChangeSidebarState}/>
       <Sidebar open={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
