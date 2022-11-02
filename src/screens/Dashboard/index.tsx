@@ -25,6 +25,7 @@ const Dashboard:React.FC = () => {
   const [user, setUser] = useState<User>();
   const [openModal, setOpenModal] = useState(false);
   const [removing, setRemoving] = useState(false);
+  const [canRemove, setCanRemove] = useState(false);
   const classes = useStyles();
 
   const formik = useFormik({
@@ -106,6 +107,7 @@ const Dashboard:React.FC = () => {
   const handleCloseModal = () => {
     formik.resetForm();
     setRemoving(false);
+    setCanRemove(false);
     setOpenModal(false);
   }
 
@@ -135,6 +137,7 @@ const Dashboard:React.FC = () => {
       lab: extendedProps.event.lab
     });
     setRemoving(true);
+    setCanRemove(extendedProps.event.isEditable)
     handleOpenModal()
   }
 
@@ -256,7 +259,7 @@ const Dashboard:React.FC = () => {
           <DialogActions>
             <Button variant='outlined' color='warning' onClick={handleCloseModal}>Cancelar</Button>
             {removing ? (
-              <Button variant='outlined' color='error' onClick={handleRemoveScheduleModal}>Remover</Button>
+              canRemove && <Button variant='outlined' color='error' onClick={handleRemoveScheduleModal}>Remover</Button>
             ) : (
               <Button variant='outlined' color='success' type='submit'>Reservar</Button>
             )
@@ -264,32 +267,29 @@ const Dashboard:React.FC = () => {
           </DialogActions>
         </form>
       </Dialog>
+      <div>
+        <Button variant='contained' onClick={handleOpenModal}>Criar Reserva</Button>
+      </div>
       <FullCalendar
         plugins={[DayGridPlugin]}
         height='auto'
         locale={ptBR}
         headerToolbar={{
           left: 'title',
-          center: 'addSchedule',
           right: 'today prev,next'
         }}
         events={data.map(event => ({
           title: `Láb ${event.lab.toString()}`,
           start: event.dateStart,
           end: event.dateEnd,
-          color: event.isEditable ? (event.dateStart > startOfDay(addDays(new Date(), 2)) ? '#FF6961' : '#153D2C ') : '',
-          event
+          color: event.isEditable ? (event.dateStart >= startOfDay(addDays(new Date(), 2)) ? '#FF6961' : '#153D2C ') : '',
+          event,
+          interactive: event.isEditable
         }))}
         displayEventTime
         displayEventEnd
         editable
         eventClick={handleOpenRemoveModal}
-        customButtons={{
-          addSchedule: {
-            text: 'Criar reserva',
-            click: handleOpenModal
-          }
-        }}
       />
       <strong>Legenda</strong>
       <div style={{display: 'flex', flexDirection: 'column'}}>

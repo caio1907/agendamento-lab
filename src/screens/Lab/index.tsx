@@ -94,7 +94,6 @@ const Lab: React.FC = () => {
   }
 
   const handleDeleteLab = async (id: number) => {
-    // TODO Validar sem tem alguma reserva
     if (window.confirm(`Deseja deletar o laboratório ${id}?`)) {
       await deleteDoc(doc(database, 'labs', id.toString()))
       toast.success(`Laboratório ${id} removido com sucesso.`)

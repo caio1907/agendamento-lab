@@ -2,6 +2,8 @@ import React from 'react';
 import { Box, Divider, Drawer, useMediaQuery } from '@mui/material';
 import screens from '../../../screens';
 import NavLink from '../NavLink';
+import logo from '../../../logo.svg';
+import useStyles from './styles';
 
 interface Props {
   open: boolean,
@@ -9,6 +11,7 @@ interface Props {
 }
 
 export const Sidebar:React.FC<Props> = ({ open, onClose }) => {
+  const classes = useStyles();
   const lgUp = useMediaQuery((theme:any) => theme.breakpoints.up('lg'), {
     defaultMatches: true,
     noSsr: false
@@ -29,7 +32,7 @@ export const Sidebar:React.FC<Props> = ({ open, onClose }) => {
           justifyContent: 'center',
           py: 2
         }}>
-          LOGO
+          <img src={logo} className={classes.logo} alt="Agendamento" />
         </Box>
         <Divider
           sx={{

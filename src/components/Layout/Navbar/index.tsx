@@ -48,11 +48,6 @@ const Navbar:React.FC<Props> = ({
           >
             <Icon.Menu fontSize='small'/>
           </IconButton>
-          <Tooltip title='Search'>
-            <IconButton sx={{ ml: 1 }}>
-              <Icon.Search fontSize='small' />
-            </IconButton>
-          </Tooltip>
           <Box sx={{ flexGrow: 1 }} />
           <Tooltip title='Sair'>
             <IconButton sx={{ ml: 1 }} onClick={logOut}>
