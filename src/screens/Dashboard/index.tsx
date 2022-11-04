@@ -122,7 +122,7 @@ const Dashboard:React.FC = () => {
       return;
     }
     const ref = doc(database, 'schedules', ''+user?.uid);
-    const schedules:any[] = (await getDoc(ref)).get('schedules');
+    const schedules:any[] = (await getDoc(ref)).get('schedules') ?? [];
     schedules.push(values);
     await setDoc(ref, {schedules}, {merge: true});
     toast.success(`Reserva salva com sucesso`)
